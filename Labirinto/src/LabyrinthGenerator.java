@@ -128,7 +128,7 @@ public class LabyrinthGenerator {
 			
             public void run() {
             	
-                Screen screen = new Screen(labyrinth);
+                Screen screen = new Screen();
 
                 JFrame frame = new JFrame("Labyrinth Generator");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -139,7 +139,7 @@ public class LabyrinthGenerator {
                 frame.addKeyListener(screen);
             }
         });
-		
+	/*	
      // APAGAR A PARTIR DAQUI SE TUDO DER ERRADO
     
     	int analisador_true = 0;
@@ -362,7 +362,7 @@ public class LabyrinthGenerator {
     	
     	System.out.println(lista_i);
     	System.out.println(lista_j);
-    	
+    	*/
     	
     }
        
