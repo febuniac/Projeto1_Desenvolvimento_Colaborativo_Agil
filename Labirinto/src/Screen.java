@@ -68,7 +68,7 @@ public Screen() {
 			e.printStackTrace();
 		}
 		
-		timer = new Timer(100,this);
+		timer = new Timer(50,this);
 		//pote aparece em lugares randomicos
 		
 	//tamanho da tela	
@@ -98,8 +98,7 @@ public Screen() {
     // definindo o item (0,0) da pilha
     stack.push(new Crumb (yAuto, xAuto));
     
-  //Erro Abre e fecha
-	// path[xAuto][yAuto] = false; 
+  
     
 	 timer.start();
 //Premio aleatório (posição)
@@ -193,11 +192,7 @@ public void keyPressed(KeyEvent e) {
 			for(int j = 0; j < this.width; j++) {
 				
 				int x = j * CELL_SIZE;
-				 //Erro Tudo branco
-				
-				/*if(!path[i][j] && labyrinth[i][j]) {
-					g.setColor(Color.GREEN);
-				}*/
+			
 				
 				//fundo 
 				if(labyrinth[i][j]) {
@@ -239,7 +234,7 @@ public void keyPressed(KeyEvent e) {
 		Crumb crumb = stack.peek();
 		yAuto= stack.peek().getI();
 		xAuto= stack.peek().getJ();
-		//path[xAuto][yAuto] = false;
+		
 		// || é igual a or(para lembrar)
 		if (xAuto == ((width-1)) && yAuto == ((height-1)) ) {
 			timer.stop();
@@ -250,7 +245,7 @@ public void keyPressed(KeyEvent e) {
 		else {
 				if(crumb.getPassos() == 0){
 					if(xAuto >0 && path[yAuto][(xAuto)-1]){
-						//path[yAuto/CELL_SIZE][xAuto/CELL_SIZE] = false;	
+							
 						xAuto = xAuto - 1;
 						stack.add(new Crumb(yAuto, xAuto));
 						
@@ -262,7 +257,7 @@ public void keyPressed(KeyEvent e) {
 							
 				else if(crumb.getPassos() == 1){
 					if(xAuto < this.width-1 && path[yAuto][(xAuto)+1]){
-						//path[yAuto][xAuto] =false;	
+							
 						xAuto = xAuto + 1;
 						
 						stack.add(new Crumb(yAuto, xAuto));
@@ -273,7 +268,7 @@ public void keyPressed(KeyEvent e) {
 				
 				else if(crumb.getPassos()==2){
 					if(yAuto < this.height -1 && path[yAuto+1][xAuto]){
-						//path[yAuto][yAuto] =false;	
+						
 						yAuto = yAuto + 1;
 						stack.add(new Crumb(yAuto, xAuto));
 						
@@ -284,7 +279,7 @@ public void keyPressed(KeyEvent e) {
 				
 				else if(crumb.getPassos()==3) {
 					if(yAuto > 0 && path[yAuto-1][xAuto]){
-						//path[yAuto][xAuto] =false;	
+						
 						yAuto = yAuto - 1;
 						stack.add(new Crumb(yAuto, xAuto));
 						
@@ -294,7 +289,7 @@ public void keyPressed(KeyEvent e) {
 				}
 				
 				else{
-					//path[xAuto/CELL_SIZE][yAuto/CELL_SIZE] =false;
+					
 					stack.pop();
 					
 				}
@@ -308,7 +303,7 @@ public void keyPressed(KeyEvent e) {
 private static void readFiles() throws IOException{
 		//gera uma lista de strings apartir do arquivo
 		List<String> argumentos = Files.lines(Paths.get("labyrinth.txt")).collect(Collectors.toList());
-		//labirirnto2 é uma matriz de strings do tamanho do argumento SIZE
+		//labirinto2 é uma matriz de strings do tamanho do argumento SIZE
 		int linha = 0;
 		labirinto2 = new String[argumentos.size()][];
 		
@@ -346,24 +341,5 @@ private static void readFiles() throws IOException{
 		
 		
 	}
-/*
-public static boolean[][] path() {
-	return path;
-}
 
-public static void setPath(boolean[][] path) {
-	Screen.path = path;
-}
-
-
-		while(true) {
-			xPremio = pote.nextInt(this.width-1);
-			yPremio = pote.nextInt(this.height-1);
-						
-			if(labyrinth[yPremio][xPremio]) {
-				break;
-		
-			}
-		}
-*/
 }
